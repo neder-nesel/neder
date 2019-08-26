@@ -35,9 +35,9 @@ public class inGame {
         if (player == player1){
                 int shootCord= (player2.getBoard()[x][y].getcellId());
                 if (shootCord != 0){
-                    int shipLife =   player2.getflee()[shootCord].getLife() -1;
-                    player2.getflee()[shootCord].setShiplife(shipLife);
-                    if(player2.getflee()[shootCord].getLife()== 0){
+                    int shipLife =   player2.getflee()[shootCord-1].getLife() -1;
+                    player2.getflee()[shootCord-1].setShiplife(shipLife);
+                    if(player2.getflee()[shootCord -1].getLife()== 0){
                         System.out.println( "well done! you sink a ship");
                         player2.setSizeOfFlee(player2.getSizeOfFlee()-1);
                         System.out.println( "test" + player1.getSizeOfFlee());
@@ -50,12 +50,13 @@ public class inGame {
                     player2.getBoard()[x][y].setCellId(0);
                 }
         }
+
         if (player == player2) {
             int shootCord = (player1.getBoard()[x][y].getcellId());
             if (shootCord != 0) {
-                int shipLife = player1.getflee()[shootCord].getLife() - 1;
-                player1.getflee()[shootCord].setShiplife(shipLife);
-                if (player1.getflee()[shootCord].getLife() == 0){
+                int shipLife = player1.getflee()[shootCord-1].getLife() - 1;
+                player1.getflee()[shootCord-1].setShiplife(shipLife);
+                if (player1.getflee()[shootCord-1].getLife() == 0){
                     System.out.println( "well done! you sink a ship");
                     player1.setSizeOfFlee(player1.getSizeOfFlee() - 1);
                     System.out.println( "test" + player1.getSizeOfFlee());

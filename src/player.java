@@ -46,8 +46,8 @@ public class player {
 
 
 
-    public int setSizeOfFlee(int sizeOfFlee) {
-        return sizeOfFlee;
+    public void setSizeOfFlee(int sizeOfFlee) {
+        this.sizeOfFlee= sizeOfFlee;
     }
 
     public void restartFlee(int[] shipSize) {
@@ -59,31 +59,30 @@ public class player {
 
     public void locateShip(ship ship, cell[][] board, int x, int y, char pose) {
         if ((pose != 'H') && (pose != 'h') && (pose != 'v') && (pose != 'V')) {
-            System.out.println("invalid input");
-            return ;
+            throw new IllegalArgumentException("invalid input");
         }
 
         if (x + ship.getShipsize() > this.getSIZEOFBOARD()) {
-            System.out.println("the x value is out of the boards bounds ");
-            return ;
+            throw new IndexOutOfBoundsException("the x value is out of the boards bounds ");
+
         }
         if (y + ship.getShipsize() > this.getSIZEOFBOARD()) {
-            System.out.println("the y value is out of the boards bounds ");
-            return ;
+            throw new IndexOutOfBoundsException("the y value is out of the boards bounds ");
+
         }
         if ((pose == 'h') || (pose == 'H')) {
             for (int i = 0; i <= ship.getShipsize(); i++) {
                 if (this.getBoard()[(x + i)][y].getcellId() != 0) {
-                    System.out.println("this cell" +(x+i + " "+ y) +"is already taken");
-                    return ;
+                    throw new IllegalArgumentException("this cell" +(x+i + " "+ y) +"is already taken");
+
                 }
             }
         }
         if ((pose == 'v') || (pose == 'V')) {
             for (int i = 0; i <= ship.getShipsize(); i++) {
                 if (this.getBoard()[x][y+i].getcellId() != 0) {
-                    System.out.println("this cell is already taken ");
-                    return ;
+                    throw  new IllegalArgumentException("this cell is already taken ");
+
                 }
             }
 
@@ -92,7 +91,7 @@ public class player {
             for (int i = 0; i < ship.getShipsize(); i++) {
                 System.out.println("before change H" + this.getBoard()[x][y+i].getcellId());
                 board[x+i][y].setCellId(ship.getShipId());
-                System.out.println("after change H" + this.getBoard()[x][y+i].getcellId()+"loc is" +x+i+" "+y);
+                System.out.println("after change H id is" + this.getBoard()[x][y+i].getcellId()+" loc is" +(x+i)+" "+y);
             }
         }
         if ((pose == 'v') || (pose == 'V')) {

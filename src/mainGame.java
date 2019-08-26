@@ -11,9 +11,9 @@ public class mainGame {
         for (int i = 0; i < size.length; i++) {
             size[i] = (int) (Math.random() * (SIZEOFBOARD-1)) + 1;
             sizeShip = size[i];
-            System.out.println("size of the ship"+ sizeShip);
+            System.out.println("size of the ship "+ sizeShip);
             flee[i] = new ship(sizeShip, sizeShip,i+1);
-            System.out.println("id of the ship" + flee[i].getShipId());
+            System.out.println("id of the ship " + flee[i].getShipId());
         }
 
         cell[][] board1 = new cell[SIZEOFBOARD][SIZEOFBOARD];
@@ -22,7 +22,13 @@ public class mainGame {
                     board1[i][j] = new cell();
                 }
             }
-        cell[][] board2 = board1;
+
+        cell[][] board2 = new cell[SIZEOFBOARD][SIZEOFBOARD];
+        for(int i =0;i < SIZEOFBOARD; i++){
+           for(int j = 0; j < SIZEOFBOARD; j++){
+              board2[i][j] = new cell();
+            }
+        }
         player player1 = new player(flee, board1, sizeOfFlee, SIZEOFBOARD);
         player player2 = new player(flee, board2, sizeOfFlee, SIZEOFBOARD);
         inGame newGame = new inGame(player1, player2);
